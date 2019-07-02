@@ -1,13 +1,35 @@
-const initial = 0
 
-export default function(state = initialStore, action) {
+//modulo/accion
+const INCREMENTAR = 'CONTADOR/INCREMENTAR'
+const DECREMENTAR = 'CONTADOR/DECREMENTAR'
+const SETEAR = 'CONTADOR/SETEAR'
+
+export const incrementar = () => ({
+    type: INCREMENTAR,
+})
+
+export const decrementar = () => ({
+    type: DECREMENTAR,
+})
+
+export const setear = payload => ({
+    type: SETEAR,
+        payload,
+})
+
+const initialState = 0
+
+//reducer tiene que retornar estados inmutables
+export default function (state = initialState, action) {
+
     switch (action.type) {
-        case 'INCREMENTAR':
+        case INCREMENTAR:
             return state + 1
-        case "DECREMENTAR":
+        case DECREMENTAR:
             return state - 1
-
-            deafault:
-                return state
+        case SETEAR:
+            return action.payload
+        default:
+            return state
     }
 }
